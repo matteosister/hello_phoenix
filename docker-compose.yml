@@ -1,5 +1,6 @@
 web:
     build: .
+    #image: matteosister/hello-phoenix
     volumes:
         - .:/app
     links:
