@@ -7,7 +7,7 @@ ENV LANGUAGE en_US:en
 ENV LC_ALL en_US.UTF-8
 
 # elixir
-RUN apt-get update && apt-get -qqy install git
+RUN apt-get update && apt-get -qqy install git && rm -r /var/lib/apt/lists/*
 RUN git clone https://github.com/elixir-lang/elixir.git /elixir
 WORKDIR /elixir
 RUN git checkout v1.0.4
@@ -15,9 +15,12 @@ RUN make
 ENV PATH /elixir/bin:$PATH
 
 # node
-RUN apt-get update && apt-get -qqy install curl
+RUN apt-get update && apt-get -qqy install curl && rm -r /var/lib/apt/lists/*
 RUN curl -sL https://deb.nodesource.com/setup | sudo bash -
-RUN apt-get update && apt-get -qqy install nodejs
+RUN apt-get update && apt-get -qqy install nodejs && rm -r /var/lib/apt/lists/*
+
+# postgres
+RUN apt-get update && apt-get -qqy install postgres-xc-client && rm -r /var/lib/apt/lists/*
 
 # app
 ADD . /app
