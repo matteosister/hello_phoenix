@@ -11,3 +11,5 @@ let App = {
 }
 
 export default App
+
+console.log("pipo");
